@@ -1,5 +1,6 @@
 import React from 'react'
 import { navItems } from '../../data/navigation'
+import { useTheme } from '../../hooks/useTheme'
 
 function scrollTo(href: string, e: React.MouseEvent<HTMLAnchorElement>) {
   e.preventDefault()
@@ -14,22 +15,40 @@ function scrollTo(href: string, e: React.MouseEvent<HTMLAnchorElement>) {
   history.replaceState(null, '', window.location.pathname)
 }
 
-export function Header() {
+function SunIcon() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-[#070b14]/90 backdrop-blur-md border-b border-white/5">
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1.5m0 15V21m9-9h-1.5M4.5 12H3m15.36 6.36l-1.06-1.06M6.7 6.7L5.64 5.64m12.72 0l-1.06 1.06M6.7 17.3l-1.06 1.06M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+  )
+}
+
+function MoonIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    </svg>
+  )
+}
+
+export function Header() {
+  const { theme, toggleTheme } = useTheme()
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-40 bg-white/90 dark:bg-[#070b14]/90 backdrop-blur-md border-b border-slate-900/5 dark:border-white/5">
       <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between" aria-label="Main navigation">
-        <a href="#home" onClick={e => scrollTo('#home', e)} className="font-mono font-bold text-lg text-white">
-          <span className="text-green-400">~/</span>monineath
-          <span className="cursor-blink text-green-400 font-normal">_</span>
+        <a href="#home" onClick={e => scrollTo('#home', e)} className="font-mono font-bold text-lg text-slate-900 dark:text-white">
+          <span className="text-green-600 dark:text-green-400">~/</span>monineath
+          <span className="cursor-blink text-green-600 dark:text-green-400 font-normal">_</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-7" role="list">
           {navItems.map((item, i) => (
             <li key={item.href}>
-              <a href={item.href} onClick={e => scrollTo(item.href, e)} className="font-mono text-sm text-gray-300 hover:text-green-400 transition-colors relative group">
-                <span className="text-green-500/50 text-xs mr-0.5">0{i + 1}.</span>
+              <a href={item.href} onClick={e => scrollTo(item.href, e)} className="font-mono text-sm text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors relative group">
+                <span className="text-green-600/50 dark:text-green-500/50 text-xs mr-0.5">0{i + 1}.</span>
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 dark:bg-green-400 group-hover:w-full transition-all" />
               </a>
             </li>
           ))}
@@ -40,8 +59,13 @@ export function Header() {
             <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
             online
           </span>
-          <button className="px-2.5 py-1 rounded border border-green-500/50 text-green-400 font-mono text-xs font-medium hover:border-green-400 transition-colors" aria-label="Switch language">
-            En
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded border border-green-600/50 dark:border-green-500/50 text-green-600 dark:text-green-400 hover:border-green-600 dark:hover:border-green-400 transition-colors cursor-pointer"
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
       </nav>

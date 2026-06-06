@@ -4,15 +4,80 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Monineath - Backend Developer portfolio. Building scalable APIs, databases and server-side systems with Node.js, Spring Boot, SQL and more." />
-    <meta name="keywords" content="backend developer, backend engineer, api developer, portfolio, node.js, spring boot, sql, databases" />
-    <meta name="author" content="Monineath" />
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Sol Monineath — Backend Developer in Phnom Penh, Cambodia. Scalable REST APIs, well-modeled databases and reliable server-side systems built with Node.js, Spring Boot and SQL." />
+    <meta name="keywords" content="backend developer, backend engineer, api developer, portfolio, node.js, spring boot, sql, databases, phnom penh, cambodia" />
+    <meta name="author" content="Sol Monineath" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://monineath-portfolio.vercel.app/" />
+
+    <!-- Theme color for browser UI (matches light/dark palettes) -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f8fb" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070b14" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Monineath | Backend Developer" />
-    <meta property="og:description" content="Backend Developer portfolio — scalable APIs, databases and server-side systems." />
+    <meta property="og:description" content="Backend Developer in Phnom Penh, Cambodia — scalable APIs, databases and server-side systems." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://monineath-portfolio.vercel.app/" />
+    <meta property="og:site_name" content="Monineath — Backend Developer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://monineath-portfolio.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Monineath — Backend Developer. Terminal-style portfolio card." />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Monineath | Backend Developer" />
-    <meta name="twitter:description" content="Backend Developer portfolio — scalable APIs, databases and server-side systems." />
+    <meta name="twitter:description" content="Backend Developer in Phnom Penh, Cambodia — scalable APIs, databases and server-side systems." />
+    <meta name="twitter:image" content="https://monineath-portfolio.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Monineath — Backend Developer. Terminal-style portfolio card." />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://monineath-portfolio.vercel.app/#person",
+            "name": "Sol Monineath",
+            "alternateName": "Monineath",
+            "jobTitle": "Backend Developer",
+            "url": "https://monineath-portfolio.vercel.app/",
+            "image": "https://monineath-portfolio.vercel.app/og-image.png",
+            "email": "mailto:salmonineath31@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Phnom Penh",
+              "addressCountry": "KH"
+            },
+            "knowsAbout": [
+              "REST APIs",
+              "Node.js",
+              "Express",
+              "Spring Boot",
+              "SQL",
+              "MySQL",
+              "MongoDB",
+              "System Design",
+              "Backend Development"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://monineath-portfolio.vercel.app/#website",
+            "url": "https://monineath-portfolio.vercel.app/",
+            "name": "Monineath — Backend Developer Portfolio",
+            "description": "Portfolio of Sol Monineath, a backend developer building scalable APIs, databases and server-side systems.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://monineath-portfolio.vercel.app/#person" }
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,9 +85,28 @@
       rel="stylesheet"
     />
     <title>Monineath | Backend Developer</title>
+    <!-- Apply theme before first paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        var theme = localStorage.getItem('theme');
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Monineath — Backend Developer</h1>
+      <p>
+        Sol Monineath is a backend developer based in Phnom Penh, Cambodia, building scalable
+        REST APIs, well-modeled databases and reliable server-side systems with Node.js,
+        Spring Boot, SQL and MongoDB. Contact: salmonineath31@gmail.com
+      </p>
+      <p>This portfolio requires JavaScript for the interactive experience.</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

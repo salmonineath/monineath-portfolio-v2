@@ -10,9 +10,9 @@ const iconColors: Record<string, string> = {
   JS: 'bg-yellow-400 text-black',
   Re: 'bg-blue-400 text-black',
   Vu: 'bg-green-500 text-white',
-  Ne: 'text-white border border-gray-500',
+  Ne: 'text-slate-900 dark:text-white border border-gray-500',
   No: 'bg-green-600 text-white',
-  Ex: 'text-white border border-gray-500',
+  Ex: 'text-slate-900 dark:text-white border border-gray-500',
   Sp: 'bg-green-700 text-white',
   SQ: 'bg-orange-500 text-white',
   My: 'bg-blue-600 text-white',
@@ -125,7 +125,7 @@ export function Skills() {
                       >
                         {skill.icon}
                       </div>
-                      <span className="font-mono text-xs text-gray-400">{skill.name}</span>
+                      <span className="font-mono text-xs text-gray-600 dark:text-gray-400">{skill.name}</span>
                     </div>
                   ))}
                 </div>
@@ -133,12 +133,12 @@ export function Skills() {
 
               const card = (
                 <div className={`skill-card-wrap ${isLeft ? 'md:pl-12' : 'md:pr-12'}`}>
-                  <div className="bg-[#0d1320] rounded-xl p-6 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-green-500/25 hover:shadow-[0_14px_36px_rgba(34,197,94,0.07)]">
-                    <h3 className="text-white font-semibold text-lg mb-3 font-mono">
-                      <span className="text-green-400/70 select-none">{'> '}</span>
+                  <div className="bg-white dark:bg-[#0d1320] rounded-xl p-6 border border-slate-900/10 dark:border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-green-500/25 hover:shadow-[0_14px_36px_rgba(34,197,94,0.07)]">
+                    <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-3 font-mono">
+                      <span className="text-green-600/70 dark:text-green-400/70 select-none">{'> '}</span>
                       {cat.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{cat.description}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{cat.description}</p>
                   </div>
                 </div>
               )
@@ -146,7 +146,7 @@ export function Skills() {
               return (
                 <div key={cat.title} className="skill-row relative grid md:grid-cols-2 gap-8 items-center">
                   <div
-                    className="timeline-dot absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-green-500 border-2 border-[#070b14] hidden md:block z-10"
+                    className="timeline-dot absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-green-500 border-2 border-[var(--bg-primary)] hidden md:block z-10"
                     aria-hidden="true"
                   />
                   {isLeft ? (

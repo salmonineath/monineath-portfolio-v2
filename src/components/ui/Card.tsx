@@ -8,8 +8,8 @@ interface CardProps {
 export function Card({ children, className = '', terminal }: CardProps) {
   if (terminal !== undefined) {
     return (
-      <div className="rounded-xl border border-white/10 bg-[#0d1320] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.03] border-b border-white/[0.06]">
+      <div className="rounded-xl border border-slate-900/10 dark:border-white/10 bg-white dark:bg-[#0d1320] overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/[0.03] dark:bg-white/[0.03] border-b border-slate-900/[0.08] dark:border-white/[0.06]">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#28ca41]/80" aria-hidden="true" />
@@ -21,7 +21,7 @@ export function Card({ children, className = '', terminal }: CardProps) {
   }
 
   return (
-    <div className={`rounded-xl border border-white/10 bg-[#0d1320] ${className}`}>
+    <div className={`rounded-xl border border-slate-900/10 dark:border-white/10 bg-white dark:bg-[#0d1320] ${className}`}>
       {children}
     </div>
   )

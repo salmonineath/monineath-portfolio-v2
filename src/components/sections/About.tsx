@@ -7,8 +7,8 @@ import { Card } from '../ui/Card'
 gsap.registerPlugin(ScrollTrigger)
 
 /* Syntax-highlight helpers for the about.json block */
-const K = ({ children }: { children: string }) => <span className="text-cyan-300">"{children}"</span>
-const S = ({ children }: { children: string }) => <span className="text-green-400">"{children}"</span>
+const K = ({ children }: { children: string }) => <span className="text-cyan-700 dark:text-cyan-300">"{children}"</span>
+const S = ({ children }: { children: string }) => <span className="text-green-700 dark:text-green-400">"{children}"</span>
 const P = ({ children }: { children: string }) => <span className="text-gray-500">{children}</span>
 
 export function About() {
@@ -101,11 +101,11 @@ export function About() {
                   <div>  <K>focus</K><P>: [</P><S>REST APIs</S><P>, </P><S>databases</S><P>, </P><S>system design</S><P>],</P></div>
                   <div>  <K>currently</K><P>: </P><S>building scalable server-side systems</S><P>,</P></div>
                   <div>  <K>philosophy</K><P>: </P><S>boring tech, exciting results</S><P>,</P></div>
-                  <div>  <K>coffee_dependency</K><P>: </P><span className="text-amber-400">true</span><P>,</P></div>
-                  <div>  <K>open_to_work</K><P>: </P><span className="text-amber-400">true</span></div>
+                  <div>  <K>coffee_dependency</K><P>: </P><span className="text-amber-600 dark:text-amber-400">true</span><P>,</P></div>
+                  <div>  <K>open_to_work</K><P>: </P><span className="text-amber-600 dark:text-amber-400">true</span></div>
                   <div><P>{'}'}</P></div>
                 </div>
-                <p className="mt-6 text-gray-400 text-sm leading-relaxed">
+                <p className="mt-6 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                   I'm a backend developer who cares about what happens after the request leaves
                   the browser — clean API contracts, well-modeled data, and systems that fail
                   gracefully instead of loudly. I like solving the invisible problems:

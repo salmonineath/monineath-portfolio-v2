@@ -2,6 +2,8 @@ import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { Button } from '../ui/Button'
 
+type ParticleTone = 'green' | 'cyan' | 'neutral'
+
 interface Particle {
   x: number
   y: number
@@ -11,7 +13,13 @@ interface Particle {
   opacity: number
   vx: number
   vy: number
-  color: string
+  tone: ParticleTone
+}
+
+/* Star colors per theme — faint white stars are invisible on a light background */
+const PARTICLE_PALETTES: Record<'dark' | 'light', Record<ParticleTone, string>> = {
+  dark: { green: '74,222,128', cyan: '103,232,249', neutral: '255,255,255' },
+  light: { green: '22,163,74', cyan: '8,145,178', neutral: '51,65,85' },
 }
 
 export function Hero() {
@@ -47,9 +55,9 @@ export function Hero() {
       const x = Math.random() * canvas.width
       const y = Math.random() * canvas.height
       const roll = Math.random()
-      // ~20% green nodes, ~15% cyan, rest faint white
-      const color = roll < 0.2 ? '74,222,128' : roll < 0.35 ? '103,232,249' : '255,255,255'
-      return { x, y, baseX: x, baseY: y, radius: Math.random() * 1.3 + 0.3, opacity: 0, vx: 0, vy: 0, color }
+      // ~20% green nodes, ~15% cyan, rest neutral
+      const tone: ParticleTone = roll < 0.2 ? 'green' : roll < 0.35 ? 'cyan' : 'neutral'
+      return { x, y, baseX: x, baseY: y, radius: Math.random() * 1.3 + 0.3, opacity: 0, vx: 0, vy: 0, tone }
     })
 
     // Stagger-twinkle each star with GSAP
@@ -90,6 +98,11 @@ export function Hero() {
     const tick = () => {
       renderCtx.clearRect(0, 0, canvas.width, canvas.height)
 
+      // Resolve the palette once per frame so stars follow live theme toggles
+      const palette = document.documentElement.classList.contains('dark')
+        ? PARTICLE_PALETTES.dark
+        : PARTICLE_PALETTES.light
+
       for (const p of particles) {
         const dx = p.x - mouseX
         const dy = p.y - mouseY
@@ -111,7 +124,7 @@ export function Hero() {
 
         renderCtx.beginPath()
         renderCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        renderCtx.fillStyle = `rgba(${p.color},${p.opacity})`
+        renderCtx.fillStyle = `rgba(${palette[p.tone]},${p.opacity})`
         renderCtx.fill()
       }
     }
@@ -210,17 +223,17 @@ export function Hero() {
         </div>
 
         <p ref={promptRef} className="font-mono text-sm text-gray-500 mb-3">
-          <span className="text-green-400">monineath@server</span>
+          <span className="text-green-600 dark:text-green-400">monineath@server</span>
           <span>:</span>
-          <span className="text-cyan-400">~</span>
+          <span className="text-cyan-600 dark:text-cyan-400">~</span>
           <span>$ whoami</span>
-          <span className="cursor-blink text-green-400 ml-1">▌</span>
+          <span className="cursor-blink text-green-600 dark:text-green-400 ml-1">▌</span>
         </p>
 
-        <h1 ref={titleRef} className="text-4xl md:text-5xl font-bold text-white mb-2">
+        <h1 ref={titleRef} className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2">
           Monineath
         </h1>
-        <p ref={roleRef} className="font-mono text-xl md:text-2xl text-green-400 mb-4 font-medium">
+        <p ref={roleRef} className="font-mono text-xl md:text-2xl text-green-600 dark:text-green-400 mb-4 font-medium">
           {'> '}Backend Developer
         </p>
 
@@ -230,13 +243,13 @@ export function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
               <span className="relative inline-flex rounded-full w-2 h-2 bg-green-500" />
             </span>
-            <span className="text-green-400/90">systems operational</span>
+            <span className="text-green-600/90 dark:text-green-400/90">systems operational</span>
           </span>
           <span aria-hidden="true">|</span>
-          <span>status: <span className="text-cyan-400">200 OK</span></span>
+          <span>status: <span className="text-cyan-600 dark:text-cyan-400">200 OK</span></span>
         </div>
 
-        <p ref={descRef} className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-lg mx-auto">
+        <p ref={descRef} className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-lg mx-auto">
           I build the part of the product you don't see — scalable APIs,
           well-modeled databases and server-side systems that stay fast,
           secure and reliable under load.

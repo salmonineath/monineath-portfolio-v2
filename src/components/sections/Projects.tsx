@@ -14,17 +14,17 @@ const filterLabels: Record<Filter, string> = {
 
 function ProjectPreview({ title }: { title: string }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-green-500/20" role="img" aria-label={`${title} screenshot`}>
+    <div className="rounded-xl overflow-hidden border border-green-600/25 dark:border-green-500/20 bg-white dark:bg-transparent" role="img" aria-label={`${title} screenshot`}>
       {/* Terminal title bar */}
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.03] border-b border-white/[0.06]">
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/[0.03] dark:bg-white/[0.03] border-b border-slate-900/[0.08] dark:border-white/[0.06]">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/80" aria-hidden="true" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80" aria-hidden="true" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28ca41]/80" aria-hidden="true" />
         <span className="ml-2 font-mono text-[11px] text-gray-500">{title.toLowerCase().replace(/\s+/g, '-')} — production</span>
       </div>
       {/* Screenshot placeholder */}
-      <div className="aspect-video bg-gradient-to-br from-green-900/50 via-[#0b101c] to-cyan-900/40 flex items-center justify-center">
-        <span className="font-mono text-xs text-green-500/40 select-none">[ screenshot loading… ]</span>
+      <div className="aspect-video bg-gradient-to-br from-green-200/60 via-slate-100 to-cyan-200/50 dark:from-green-900/50 dark:via-[#0b101c] dark:to-cyan-900/40 flex items-center justify-center">
+        <span className="font-mono text-xs text-green-700/50 dark:text-green-500/40 select-none">[ screenshot loading… ]</span>
       </div>
     </div>
   )
@@ -47,7 +47,9 @@ export function Projects() {
               aria-selected={active === f}
               onClick={() => setActive(f)}
               className={`px-5 py-2 rounded-md font-mono text-sm font-medium transition-colors ${
-                active === f ? 'bg-green-600 text-white' : 'bg-transparent text-gray-400 hover:text-white border border-white/10'
+                active === f
+                  ? 'bg-green-600 text-white'
+                  : 'bg-transparent text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white border border-slate-900/10 dark:border-white/10'
               }`}
             >
               {filterLabels[f]}
@@ -59,13 +61,13 @@ export function Projects() {
           {filtered.length > 0 ? filtered.map(project => {
             const info = (
               <div className="space-y-4">
-                <p className="font-mono text-green-400 text-xs uppercase tracking-widest">
-                  <span className="text-gray-600 select-none">{'<'}</span>
+                <p className="font-mono text-green-700 dark:text-green-400 text-xs uppercase tracking-widest">
+                  <span className="text-gray-400 dark:text-gray-600 select-none">{'<'}</span>
                   {project.subtitle}
-                  <span className="text-gray-600 select-none">{' />'}</span>
+                  <span className="text-gray-400 dark:text-gray-600 select-none">{' />'}</span>
                 </p>
-                <h3 className="text-white text-2xl font-bold">{project.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{project.description}</p>
+                <h3 className="text-slate-900 dark:text-white text-2xl font-bold">{project.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{project.description}</p>
                 {project.stack && (
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map(tech => (
